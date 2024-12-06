@@ -1,4 +1,5 @@
 using ObiletHackathon.Api.Utilities;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<DatabaseConnectionFactory>();
+builder.Configuration.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
 
 var app = builder.Build();
 
@@ -39,9 +41,15 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
-app.MapGet("/getPointList", () => { return Enumerable.Empty<dynamic>(); }).WithName("Points").WithOpenApi();
-app.MapGet("/getJourneys", () => { return Enumerable.Empty<dynamic>(); }).WithName("Journeys").WithOpenApi();
-app.MapPost("/createReservation", () => { return Enumerable.Empty<dynamic>(); }).WithName("CreateReservation").WithOpenApi();
+app.MapGet("/getPointList", () => { return Enumerable.Empty<dynamic>(); })
+    .WithName("Points")
+    .WithOpenApi();
+app.MapGet("/getJourneys", () => { return Enumerable.Empty<dynamic>(); })
+    .WithName("Journeys")
+    .WithOpenApi();
+app.MapPost("/createReservation", () => { return Enumerable.Empty<dynamic>(); })
+    .WithName("CreateReservation")
+    .WithOpenApi();
 
 app.Run();
 
