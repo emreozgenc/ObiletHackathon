@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObiletHackathon.PointsApi", "ObiletHackathon.PointsApi\ObiletHackathon.PointsApi.csproj", "{A5881DEB-7967-4CF7-BD01-E94437A50D38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObiletHackathon.ReservationApi", "ObiletHackathon.ReservationApi\ObiletHackathon.ReservationApi.csproj", "{B3986E09-369C-4F2E-9878-87C2A7245CEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A5881DEB-7967-4CF7-BD01-E94437A50D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5881DEB-7967-4CF7-BD01-E94437A50D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5881DEB-7967-4CF7-BD01-E94437A50D38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3986E09-369C-4F2E-9878-87C2A7245CEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3986E09-369C-4F2E-9878-87C2A7245CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3986E09-369C-4F2E-9878-87C2A7245CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3986E09-369C-4F2E-9878-87C2A7245CEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
