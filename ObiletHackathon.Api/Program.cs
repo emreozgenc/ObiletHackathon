@@ -1,3 +1,5 @@
+using ObiletHackathon.Api;
+using ObiletHackathon.Api.Entities;
 using ObiletHackathon.Api.Utilities;
 using System.Reflection;
 
@@ -41,15 +43,27 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
-app.MapGet("/getPointList", () => { return Enumerable.Empty<dynamic>(); })
-    .WithName("Points")
-    .WithOpenApi();
-app.MapGet("/getJourneys", () => { return Enumerable.Empty<dynamic>(); })
-    .WithName("Journeys")
-    .WithOpenApi();
-app.MapPost("/createReservation", () => { return Enumerable.Empty<dynamic>(); })
-    .WithName("CreateReservation")
-    .WithOpenApi();
+app.MapGet("/getPointList", (PointRequest request, IRepository repository) =>
+{
+    return repository.GetPoints(request);
+})
+.WithName("Points")
+.WithOpenApi();
+
+app.MapGet("/getJourneys", (JourneyRequest request, IRepository repository) =>
+{
+    return repository.GetJourneys(request);
+})
+.WithName("Journeys")
+.WithOpenApi();
+app.MapPost("/createReservation", (ReservationRequest request, IRepository repository) => { 
+
+    var response = repository.CreateReservation(request);
+
+    return response;
+})
+.WithName("CreateReservation")
+.WithOpenApi();
 
 app.Run();
 
