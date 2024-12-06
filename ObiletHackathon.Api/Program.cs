@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Mvc;
 using ObiletHackathon.Api;
+using ObiletHackathon.Api.Entities;
 using ObiletHackathon.Api.Utilities;
 using System.Reflection;
 
@@ -9,9 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<DatabaseConnectionFactory>();
+builder.Services.AddTransient<IRepository, JourneyRepository>();
 builder.Configuration.AddUserSecrets("438a60c3-be47-4663-aca9-181338b586bd");
-builder.Services.AddSingleton<IRepository, JourneyRepository>();
-builder.Configuration.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
 
 var app = builder.Build();
 
@@ -26,20 +27,21 @@ app.UseHttpsRedirection();
 
 
 
-app.MapGet("/getPointList", (PointRequest request, IRepository repository) =>
+app.MapGet("/getPointList", ([FromServices] IRepository repository) =>
 {
-    return repository.GetPoints(request);
+    return repository.GetPoints(new PointRequest());
 })
 .WithName("Points")
 .WithOpenApi();
 
-app.MapGet("/getJourneys", (JourneyRequest request, IRepository repository) =>
+app.MapPost("/getJourneys", ([FromBody] JourneyRequest request, [FromServices] IRepository repository) =>
 {
     return repository.GetJourneys(request);
 })
 .WithName("Journeys")
 .WithOpenApi();
-app.MapPost("/createReservation", (ReservationRequest request, IRepository repository) => { 
+
+app.MapPost("/createReservation", ([FromBody] ReservationRequest request, [FromServices] IRepository repository) => { 
 
     var response = repository.CreateReservation(request);
 
