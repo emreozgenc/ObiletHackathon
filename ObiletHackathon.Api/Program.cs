@@ -1,9 +1,12 @@
+using ObiletHackathon.Api.Utilities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<DatabaseConnectionFactory>();
 
 var app = builder.Build();
 
@@ -35,6 +38,10 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
+
+app.MapGet("/getPointList", () => { return Enumerable.Empty<dynamic>(); }).WithName("Points").WithOpenApi();
+app.MapGet("/getJourneys", () => { return Enumerable.Empty<dynamic>(); }).WithName("Journeys").WithOpenApi();
+app.MapPost("/createReservation", () => { return Enumerable.Empty<dynamic>(); }).WithName("CreateReservation").WithOpenApi();
 
 app.Run();
 
