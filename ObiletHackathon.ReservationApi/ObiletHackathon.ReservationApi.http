@@ -1,6 +1,0 @@
-@ObiletHackathon.ReservationApi_HostAddress = http://localhost:5277
-
-GET {{ObiletHackathon.ReservationApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

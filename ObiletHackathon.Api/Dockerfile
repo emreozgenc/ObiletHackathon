@@ -9,17 +9,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["ObiletHackathon.PointsApi/ObiletHackathon.PointsApi.csproj", "ObiletHackathon.PointsApi/"]
-RUN dotnet restore "./ObiletHackathon.PointsApi/ObiletHackathon.PointsApi.csproj"
+COPY ["ObiletHackathon.Api/ObiletHackathon.Api.csproj", "ObiletHackathon.Api/"]
+RUN dotnet restore "./ObiletHackathon.Api/ObiletHackathon.Api.csproj"
 COPY . .
-WORKDIR "/src/ObiletHackathon.PointsApi"
-RUN dotnet build "./ObiletHackathon.PointsApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/ObiletHackathon.Api"
+RUN dotnet build "./ObiletHackathon.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./ObiletHackathon.PointsApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./ObiletHackathon.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ObiletHackathon.PointsApi.dll"]
+ENTRYPOINT ["dotnet", "ObiletHackathon.Api.dll"]
