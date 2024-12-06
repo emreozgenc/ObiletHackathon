@@ -1,5 +1,6 @@
-﻿
-namespace ObiletHackathon.Api.Entities
+﻿using ObiletHackathon.Api.Entities;
+
+namespace ObiletHackathon.Api.Utilities
 {
     public interface IRepository
     {

@@ -1,14 +1,14 @@
 ﻿using Dapper;
-using ObiletHackathon.Api.Utilities;
+using ObiletHackathon.Api.Entities;
 using System.Data;
 
 
-namespace ObiletHackathon.Api.Entities
+namespace ObiletHackathon.Api.Utilities
 {
-    public class JourneyReposityory : IRepository
+    public class JourneyRepository : IRepository
     {
         internal DatabaseConnectionFactory _connectionFactory { get; set; }
-        public JourneyReposityory(DatabaseConnectionFactory dbConnectionFactory)
+        public JourneyRepository(DatabaseConnectionFactory dbConnectionFactory)
         {
             _connectionFactory = dbConnectionFactory;
 

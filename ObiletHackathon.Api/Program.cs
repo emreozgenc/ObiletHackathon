@@ -1,5 +1,4 @@
 using ObiletHackathon.Api;
-using ObiletHackathon.Api.Entities;
 using ObiletHackathon.Api.Utilities;
 using System.Reflection;
 
@@ -10,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<DatabaseConnectionFactory>();
+builder.Services.AddSingleton<IRepository, JourneyRepository>();
 builder.Configuration.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
 
 var app = builder.Build();
